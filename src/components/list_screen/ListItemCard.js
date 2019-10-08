@@ -24,10 +24,10 @@ export class ListItemCard extends Component {
 
 const completedRed = {
     color: "#FF0000"
-}
+};
 
 const completedGreen = {
     color: "#22AA22"
-}
+};
 
 export default ListItemCard
