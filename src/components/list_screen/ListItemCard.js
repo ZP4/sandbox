@@ -27,7 +27,7 @@ const completedRed = {
 };
 
 const completedGreen = {
-    color: "#22AA22"
+    color: "#E6E6E6"
 };
 
 export default ListItemCard
