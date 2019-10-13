@@ -35,7 +35,7 @@ export class ListItemCard extends Component {
                         type= 'image'
                         src= ''
                         onClick= ''
-                    />
+                    />git
                 </div>
             </div>
         )
