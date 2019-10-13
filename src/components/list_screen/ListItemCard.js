@@ -17,6 +17,26 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_completed' style={this.props.listItem.completed ? completedRed : completedGreen}>
                     {this.props.listItem.completed ? "Completed" : "Pending"}
                 </div>
+
+                <div className=''>
+                    <input
+                        type= 'image'
+                        src= ''
+                        onClick= ''
+                    />
+
+                    <inputgit
+                        type= 'image'
+                        src= ''
+                        onClick= ''
+                    />
+
+                    <input
+                        type= 'image'
+                        src= ''
+                        onClick= ''
+                    />
+                </div>
             </div>
         )
     }
