@@ -18,25 +18,25 @@ export class ListItemCard extends Component {
                     {this.props.listItem.completed ? "Completed" : "Pending"}
                 </div>
 
-                <div className=''>
-                    <input
-                        type= 'image'
-                        src= ''
-                        onClick= ''
-                    />
+                {/*<div className=''>*/}
+                {/*    <input*/}
+                {/*        type= 'image'*/}
+                {/*        src= ''*/}
+                {/*        onClick= ''*/}
+                {/*    />*/}
 
-                    <inputgit
-                        type= 'image'
-                        src= ''
-                        onClick= ''
-                    />
+                {/*    <input*/}
+                {/*        type= 'image'*/}
+                {/*        src= ''*/}
+                {/*        onClick= ''*/}
+                {/*    />*/}
 
-                    <input
-                        type= 'image'
-                        src= ''
-                        onClick= ''
-                    />git
-                </div>
+                {/*    <input*/}
+                {/*        type= 'image'*/}
+                {/*        src= ''*/}
+                {/*        onClick= ''*/}
+                {/*    />git*/}
+                {/*</div>*/}
             </div>
         )
     }
