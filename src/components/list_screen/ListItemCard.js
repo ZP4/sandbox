@@ -14,20 +14,23 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_due_date'>
                     {this.props.listItem.due_date}
                 </div>
-                <div className='list_item_card_completed' style={this.props.listItem.completed ? completedRed : completedGreen}>
+                <div className='list_item_card_completed' style={this.props.listItem.completed ? completedGreen : completedRed}>
                     {this.props.listItem.completed ? "Completed" : "Pending"}
                 </div>
 
-                <div className=''>
+                <div className='list_item_buttons'>
                     <div
+                        className='list_item_card_move_up'
                         onClick= ''
                     >&#8679;</div>
 
                     <div
+                        className='list_item_card_move_down'
                         onClick= ''
                     >&#8681;</div>
 
                     <div
+                        className='list_item_card_delete'
                         onClick= ''
                     >&#10006;</div>
                 </div>
@@ -37,11 +40,11 @@ export class ListItemCard extends Component {
 }
 
 const completedRed = {
-    color: "#FF0000"
+    color: "red"
 };
 
 const completedGreen = {
-    color: "#E6E6E6"
+    color: "green"
 };
 
 export default ListItemCard

@@ -11,7 +11,7 @@ class ListNewItemCard extends Component {
     render() {
         return (
             <div className='list_item_card' onClick={this}>
-                <div>
+                <div className='list_item_add_card'>
                     &#43;
                 </div>
 
