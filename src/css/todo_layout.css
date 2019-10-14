@@ -49,6 +49,7 @@ body {
     position: absolute;
     left: 85%;
     width: 15%;
+    text-align: right;
     top: 5%;
 }
 #list_details_container {
@@ -89,7 +90,7 @@ body {
     position: absolute;
     top: 5%;
 }
-.list_item_card_assigned_to, .list_item_card_due_date, 
+.list_item_card_assigned_to, .list_item_card_due_date,
 .list_item_card_completed, .list_item_card_not_completed {
     position: absolute;
     top: 50%;

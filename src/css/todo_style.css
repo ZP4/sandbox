@@ -13,63 +13,10 @@
   --swatch-bright-accent: #84C484;
   --swatch-disabled: #929292;
   --swatch-delete:#E1E4CC;
+  --swatch-neutral:#eaeadd;
+  --my-font-family:          "Lexend Exa";
   --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
-
-.animate {
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-}
-
-@-webkit-keyframes fade {
-  0% { opacity: 0; }
-  100% { opacity: 1; display: block; }
-}
-@keyframes fade {
-  0% { opacity: 0; }
-  100% { opacity: 1; display: block; }
-}
-
-.fadeOut {
-  opacity: 0;
-  -webkit-animation: fade .5s reverse;
-  animation:fade .5s reverse;
-}
-
 
 
 #edit_cancel_button,
@@ -94,16 +41,12 @@
   position: absolute;
 }
 #list_trash {
-  width: 48px;
-  height: 48px;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
+  font-size: 40pt;
 }
-#list_trash:hover  {
-  background-color: var(--swatch-darker-primary);
+#list_trash:hover {
+  color: var(--swatch-accent);
+  cursor: pointer;
 }
-
 
 
 body {
@@ -194,22 +137,15 @@ body {
 #list_heading:hover {
   color: var(--swatch-accent);
 }
-#list_details_container {
-  display: flex;
-  justify-content: space-between;
-}
-#list_details_name_container {
-}
-#list_name_prompt,
-#list_owner_prompt {
+#list_details_container {}
+#list_details_name_container {}
+#list_name_prompt, #list_owner_prompt {
   font-size: 14pt;
 }
-#list_name_textfield,
-#list_owner_textfield {
+#list_name_textfield, #list_owner_textfield {
   font-size: 14pt;
 }
-#list_details_owner_container {
-}
+#list_details_owner_container {}
 #list_trash:hover {
   color: var(--swatch-accent);
   cursor: pointer;
