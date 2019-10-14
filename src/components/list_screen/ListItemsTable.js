@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ListItemCard from './ListItemCard'
+import ListNewItemCard from "./ListNewItemCard";
 
 const sortingCriteria = {
     SORT_TASK_DECREASING: 'SORT_TASK_DECREASING',
@@ -23,7 +24,7 @@ export class ListItemsTable extends Component {
             currentTaskSortingCriteria: sortingCriteria.SORT_TASK_INCREASING,
             currentDateSortingCriteria: sortingCriteria.SORT_DATE_INCREASING,
             currentStatusSortingCriteria: sortingCriteria.SORT_STATUS_INCREASING,
-            list: [].concat(this.props.todoList.items)
+            list: this.props.todoList.items
         };
         this.sortItem = this.sortItem.bind(this);
         this.compare = this.compare.bind(this);
@@ -102,6 +103,11 @@ export class ListItemsTable extends Component {
                             key={todoItem.key}
                             listItem={todoItem} />
                     ))
+                }
+                {
+                    <ListNewItemCard
+                        list={this.state.list}
+                    />
                 }
             </div>
         )
