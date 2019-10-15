@@ -90,6 +90,55 @@ export class ListItemsTable extends Component {
 
     }
 
+    itemUp = (value) => {
+        let count = -1;
+        let arr = this.state.list;
+        for (let i = 0;i<this.state.list.length;i++) {
+            if(this.state.list[i].key === value.key) {
+                count = i
+            }
+        }
+        let temp = arr[count];
+        arr[count] = arr[count-1];
+        arr[count-1] = temp;
+
+        this.setState({
+            list: arr
+        })
+    };
+
+    itemDown = (value) => {
+        let count = -1;
+        let arr = this.state.list;
+        for (let i = 0;i<this.state.list.length;i++) {
+            if(this.state.list[i].key === value.key) {
+                count = i
+            }
+        }
+        let temp = arr[count];
+        arr[count] = arr[count+1];
+        arr[count+1] = temp;
+
+        this.setState({
+            list: arr
+        })
+    };
+
+    itemDelete = (value) => {
+        let count = -1;
+        let arr = this.state.list;
+        for (let i = 0;i<this.state.list.length;i++) {
+            if(this.state.list[i].key === value.key) {
+                count = i
+            }
+        }
+        arr.splice(count, 1);
+
+        this.setState({
+            list: arr
+        })
+    };
+
     render() {
         return (
             <div className= "list_item_header_card" id="list_items_container">
@@ -104,6 +153,9 @@ export class ListItemsTable extends Component {
                             key={todoItem.key}
                             listItem={todoItem}
                             todoList={this.state.list}
+                            itemUpFunc={this.itemUp.bind(this)}
+                            itemDownFunc={this.itemDown.bind(this)}
+                            itemDeleteFunc={this.itemDelete.bind(this)}
                         />
                     ))
                 }
