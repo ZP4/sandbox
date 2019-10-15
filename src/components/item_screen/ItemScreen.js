@@ -7,7 +7,11 @@ export class ItemScreen extends Component {
         super(props)
         console.log(this.props.todoItem.key)
         this.state = ({
-            item: this.props.todoItem
+            item: this.props.todoItem,
+            desc: this.props.todoItem.description,
+            assigned: this.props.todoItem.assigned_to,
+            date: this.props.todoItem.due_date,
+            checked: this.props.todoItem.completed
         })
     }
 
@@ -17,24 +21,30 @@ export class ItemScreen extends Component {
     };
 
     submitItem = (value) => {
+        this.state.item.description = this.state.desc;
+        this.state.item.assigned_to = this.state.assigned;
+        this.state.item.due_date = this.state.date;
+        this.state.item.completed = this.state.checked;
         this.props.itemEditCheck(this.state.item, true)
     };
+
+
     render() {
         return (
             <div id="todo_edit">
                 <strong >Item</strong>
                 <br/><br/>
                 <strong>Description:</strong>
-                <input id="edit_description_textfield" type="text" value={this.state.item.description}/>
+                <input id="edit_description_textfield" ref="desc" type="text" value={this.state.desc} onChange={(e) => {this.setState({desc: e.target.value})}}/>
                 <br/><br/>
                 <strong>Assigned To:</strong>
-                <input id="edit_assigned_to_textfield" type="text" value={this.state.item.assigned_to}/>
+                <input id="edit_assigned_to_textfield" ref="assign"  type="text" value={this.state.assigned} onChange={(e) => {this.setState({assigned: e.target.value})}}/>
                 <br/><br/>
                 <strong>Due Date:</strong>
-                <input id="edit_due_date_datefield" type="date" value={this.state.item.due_date}/>
+                <input id="edit_due_date_datefield" ref="date" type="date" value={this.state.date} onChange={(e) => {this.setState({date: e.target.value})}}/>
                 <br/><br/>
                 <strong>Completed:</strong>
-                <input id="edit_completed_checkbox" type="checkbox" checked={this.state.item.completed}/>
+                <input id="edit_completed_checkbox" ref="check"  type="checkbox" checked={this.state.checked} onClick={(e) => {this.setState({checked: e.target.checked})}}/>
                 <br/><br/>
                 <div>
                     <button id="edit_submit_button"

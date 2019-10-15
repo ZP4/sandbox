@@ -36,6 +36,10 @@ class App extends Component {
 
   itemEditCheck = (value, submit) => {
     if(submit) {
+      this.setState({
+        currentItem: value,
+        currentScreen: AppScreen.LIST_SCREEN
+      })
 
     }
     else {
@@ -47,7 +51,10 @@ class App extends Component {
   };
 
   loadNewItemEdit = (value) => {
-
+    this.setState({
+      currentItem: value,
+      currentScreen: AppScreen.ITEM_SCREEN
+    })
   };
 
   newItemEditCheck = (value, submit) => {

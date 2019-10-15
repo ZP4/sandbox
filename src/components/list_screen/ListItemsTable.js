@@ -165,6 +165,7 @@ export class ListItemsTable extends Component {
 
                     <ListNewItemCard
                         list={this.state.list}
+                        goEditItem={this.props.goEditItem}
                     />
 
             </div>
