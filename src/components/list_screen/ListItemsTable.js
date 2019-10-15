@@ -153,9 +153,12 @@ export class ListItemsTable extends Component {
                             key={todoItem.key}
                             listItem={todoItem}
                             todoList={this.state.list}
+                            goEditItem={this.props.goEditItem}
+                            itemEditCheck={this.props.itemEditCheck}
                             itemUpFunc={this.itemUp.bind(this)}
                             itemDownFunc={this.itemDown.bind(this)}
                             itemDeleteFunc={this.itemDelete.bind(this)}
+
                         />
                     ))
                 }

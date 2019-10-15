@@ -8,6 +8,7 @@ export class ListItemCard extends Component {
     }
 
     moveItemUp(event) {
+        event.stopPropagation();
         if(this.props.index === 0) {
             return false
         }
@@ -17,6 +18,7 @@ export class ListItemCard extends Component {
     }
 
     moveItemDown(event) {
+        event.stopPropagation();
         if(this.props.index === this.props.todoList.length-1) {
             return false
         }
@@ -26,12 +28,17 @@ export class ListItemCard extends Component {
     }
 
     itemDelete(event) {
+        event.stopPropagation();
         this.props.itemDeleteFunc(this.props.listItem)
     }
 
+    editItem = (event) => {
+        this.props.goEditItem(this.props.listItem)
+    };
+
     render() {
         return (
-            <div className='list_item_card'>
+            <div className='list_item_card' onClick={this.editItem.bind(this)}>
                 <div className='list_item_card_description'>
                     {this.props.listItem.description}
                 </div>

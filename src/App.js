@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
-    currentList: null
+    currentList: null,
+    currentItem: null
   };
 
   setCurrentListName = (value) => {
@@ -25,17 +26,35 @@ class App extends Component {
     this.state.currentList.owner = value;
   };
 
-  editItem = (keyValue) => {
+  loadItemEdit = (value) => {
+    this.setState({
+      currentItem: value,
+      currentScreen: AppScreen.ITEM_SCREEN
+    })
 
   };
 
-  moveItemUp = (keyValue) => {
+  itemEditCheck = (value, submit) => {
+    if(submit) {
+
+    }
+    else {
+      this.setState({
+        currentScreen: AppScreen.LIST_SCREEN,
+        currentItem: null
+      })
+    }
+  };
+
+  loadNewItemEdit = (value) => {
 
   };
 
-  moveItemDown = (keyValue) => {
+  newItemEditCheck = (value, submit) => {
 
   };
+
+
 
   goHome = () => {
     console.log("currentList: " + this.state.currentList.toString());
@@ -64,9 +83,17 @@ class App extends Component {
           todoList={this.state.currentList}
           setCurrentListName={this.setCurrentListName.bind(this)}
           setCurrentListOwner={this.setCurrentListOwner.bind(this)}
+          goEditItem={this.loadItemEdit.bind(this)}
+          itemEditCheck={this.itemEditCheck.bind(this)}
         />;
       case AppScreen.ITEM_SCREEN:
-        return <ItemScreen />;
+        return <ItemScreen
+                  loadList={this.loadList.bind(this)}
+                  todoList={this.state.currentList}
+                  todoItem={this.state.currentItem}
+                  currentScreen={this.state.currentScreen}
+                  itemEditCheck={this.itemEditCheck.bind(this)}
+        />;
       default:
         return <div>ERROR</div>;
     }

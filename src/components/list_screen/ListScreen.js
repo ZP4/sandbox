@@ -71,7 +71,26 @@ export class ListScreen extends Component {
                         />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} />
+                <ListItemsTable
+                    todoList={this.props.todoList}
+                    goEditItem={this.props.goEditItem}
+                    itemEditCheck={this.props.itemEditCheck}
+                />
+                    <div id="" className="modal modal_dialog">
+                        Delete List?
+                        <br/><br/>
+                        <strong>Are you sure you want to delete this list?</strong>
+                        <br/><br/><br/><br/>
+                        <button
+                            onClick=''
+                        >Yes</button>
+                        <button
+                            onClick=''
+                        >No</button>
+                        <br/><br/><br/><br/>
+                        This list will not be retrievable
+                    </div>
+
             </div>
         )
     }
