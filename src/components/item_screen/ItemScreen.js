@@ -5,7 +5,6 @@ import ListScreen from "../list_screen/ListScreen";
 export class ItemScreen extends Component {
     constructor(props) {
         super(props)
-        console.log(this.props.todoItem.key)
         this.state = ({
             item: this.props.todoItem,
             desc: this.props.todoItem.description,

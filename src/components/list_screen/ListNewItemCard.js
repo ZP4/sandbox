@@ -6,11 +6,21 @@ class ListNewItemCard extends Component {
         super(props);
 
     }
-
+    newItem = (event) => {
+        let l = this.props.list.length;
+        let item = {
+                "key": l,
+                "description": "",
+                "due_date": "",
+                "assigned_to": "",
+                "completed": false
+            };
+        this.props.goEditItem(item, true)
+    };
 
     render() {
         return (
-            <div className='list_item_card' onClick={this}>
+            <div className='list_item_card' onClick={this.newItem.bind(this)}>
                 <div className='list_item_add_card'>
                     &#43;
                 </div>

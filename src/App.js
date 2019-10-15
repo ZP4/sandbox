@@ -15,7 +15,8 @@ class App extends Component {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
     currentList: null,
-    currentItem: null
+    currentItem: null,
+    newOrNah: null
   };
 
   setCurrentListName = (value) => {
@@ -26,16 +27,23 @@ class App extends Component {
     this.state.currentList.owner = value;
   };
 
-  loadItemEdit = (value) => {
+  loadItemEdit = (value, boolean) => {
     this.setState({
       currentItem: value,
-      currentScreen: AppScreen.ITEM_SCREEN
+      currentScreen: AppScreen.ITEM_SCREEN,
+      newOrNah: boolean
     })
-
   };
 
   itemEditCheck = (value, submit) => {
     if(submit) {
+      if(this.state.newOrNah) {
+        let te = this.state.currentList;
+        te.items.push(value);
+        this.setState({
+          currentList: te
+        });
+      }
       this.setState({
         currentItem: value,
         currentScreen: AppScreen.LIST_SCREEN
@@ -58,6 +66,17 @@ class App extends Component {
   };
 
   newItemEditCheck = (value, submit) => {
+    if(submit) {
+      this.setState({
+        currentList: this.state.currentList.push(value)
+      });
+    }
+    else {
+      this.setState({
+        currentScreen: AppScreen.LIST_SCREEN,
+        currentItem: null
+      })
+    }
 
   };
 

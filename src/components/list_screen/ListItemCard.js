@@ -33,7 +33,7 @@ export class ListItemCard extends Component {
     }
 
     editItem = (event) => {
-        this.props.goEditItem(this.props.listItem)
+        this.props.goEditItem(this.props.listItem, false)
     };
 
     render() {

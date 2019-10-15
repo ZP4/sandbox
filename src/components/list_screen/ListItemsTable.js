@@ -30,7 +30,7 @@ export class ListItemsTable extends Component {
         this.compare = this.compare.bind(this);
     }
 
-    sortItem = (category) => {
+    sortItem(category)  {
         let array = this.state.list;
         if (category === sortCategory.TASK) {
             //this.compare(a.description, b.description, this.state.currentTaskSortingCriteria)
@@ -61,7 +61,7 @@ export class ListItemsTable extends Component {
         this.setState({list: array});
     }
 
-    compare = (item1, item2, criteria) => {
+    compare(item1, item2, criteria) {
         if (criteria === sortingCriteria.SORT_TASK_DECREASING ||
             criteria === sortingCriteria.SORT_DATE_DECREASING ||
             criteria === sortingCriteria.SORT_STATUS_DECREASING
