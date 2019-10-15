@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
 export class ListTrash extends Component {
+
     render() {
         return (
-            <div id="list_trash" >&#128465;</div>
+            <div id="list_trash"
+                onClick={this.props.show}
+            >&#128465;</div>
             
 
         )

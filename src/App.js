@@ -58,29 +58,17 @@ class App extends Component {
     }
   };
 
-  loadNewItemEdit = (value) => {
-    this.setState({
-      currentItem: value,
-      currentScreen: AppScreen.ITEM_SCREEN
-    })
-  };
-
-  newItemEditCheck = (value, submit) => {
-    if(submit) {
-      this.setState({
-        currentList: this.state.currentList.push(value)
-      });
-    }
-    else {
-      this.setState({
-        currentScreen: AppScreen.LIST_SCREEN,
-        currentItem: null
-      })
+  deleteList = (value) => {
+    let count = -1;
+    for(let i = 0;i<this.state.todoLists.length;i++) {
+      if(this.state.todoLists[i].key === value) {
+        count = i
+      }
     }
 
+    this.state.todoLists.splice(count, 1);
+    this.goHome()
   };
-
-
 
   goHome = () => {
     console.log("currentList: " + this.state.currentList.toString());
@@ -111,6 +99,7 @@ class App extends Component {
           setCurrentListOwner={this.setCurrentListOwner.bind(this)}
           goEditItem={this.loadItemEdit.bind(this)}
           itemEditCheck={this.itemEditCheck.bind(this)}
+          deleteList={this.deleteList.bind(this)}
         />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen

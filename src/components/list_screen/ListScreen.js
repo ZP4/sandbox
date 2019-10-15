@@ -41,13 +41,26 @@ export class ListScreen extends Component {
         this.props.setCurrentListOwner(event.target.value)
     }
 
+    trashModal() {
+        document.getElementById("dialog").classList.add("is_visible");
+    }
+
+    modalNo() {
+        document.getElementById("dialog").classList.remove("is_visible");
+    }
+
+    modalYes() {
+        let key = this.props.todoList.key;
+        this.props.deleteList(key)
+    }
+
 
     render() {
         return (
             <div id="todo_list">
                 <div>
                     <ListHeading goHome={this.props.goHome} />
-                    <ListTrash />
+                    <ListTrash show={this.trashModal.bind(this)}/>
                 </div>
 
 
@@ -76,21 +89,22 @@ export class ListScreen extends Component {
                     goEditItem={this.props.goEditItem}
                     itemEditCheck={this.props.itemEditCheck}
                 />
-                    <div id="" className="modal modal_dialog">
+                <div id="dialog" className="wrap">
+                    <div  className="modal modal_dialog">
                         Delete List?
                         <br/><br/>
                         <strong>Are you sure you want to delete this list?</strong>
                         <br/><br/><br/><br/>
                         <button
-                            onClick=''
+                            onClick={this.modalYes.bind(this)}
                         >Yes</button>
                         <button
-                            onClick=''
+                            onClick={this.modalNo}
                         >No</button>
                         <br/><br/><br/><br/>
                         This list will not be retrievable
                     </div>
-
+                </div>
             </div>
         )
     }
