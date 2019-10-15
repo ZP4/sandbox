@@ -7,7 +7,13 @@ class ListNewItemCard extends Component {
 
     }
     newItem = (event) => {
-        let l = this.props.list.length;
+        let l;
+        for(let i = 0; i <= this.props.list.length+1; i++) {
+            if(!Object.keys(this.props.list).includes(i)) {
+                l = i;
+                break;
+            }
+        }
         let item = {
                 "key": l,
                 "description": "",
