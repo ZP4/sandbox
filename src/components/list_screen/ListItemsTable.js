@@ -95,20 +95,23 @@ export class ListItemsTable extends Component {
             <div className= "list_item_header_card" id="list_items_container">
                 <div className="list_item_header_card"> </div>
                 <div className="list_item_task_header" onClick={() => (this.sortItem(sortCategory.TASK))} >Task</div>
-                <div className="list_item_due_date_header"onClick={(event) => (this.sortItem(sortCategory.DATE))}>Due Date</div>
-                <div className="list_item_status_header"onClick={(event) => (this.sortItem(sortCategory.STATUS))}>Status</div>
+                <div className="list_item_due_date_header"onClick={() => (this.sortItem(sortCategory.DATE))}>Due Date</div>
+                <div className="list_item_status_header"onClick={() => (this.sortItem(sortCategory.STATUS))}>Status</div>
                 {
-                    this.state.list.map((todoItem)=>(
+                    this.state.list.map((todoItem, i)=>(
                         <ListItemCard
+                            index={i}
                             key={todoItem.key}
-                            listItem={todoItem} />
+                            listItem={todoItem}
+                            todoList={this.state.list}
+                        />
                     ))
                 }
-                {
+
                     <ListNewItemCard
                         list={this.state.list}
                     />
-                }
+
             </div>
         )
     }

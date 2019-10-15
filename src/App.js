@@ -25,6 +25,18 @@ class App extends Component {
     this.state.currentList.owner = value;
   };
 
+  editItem = (keyValue) => {
+
+  };
+
+  moveItemUp = (keyValue) => {
+
+  };
+
+  moveItemDown = (keyValue) => {
+
+  };
+
   goHome = () => {
     console.log("currentList: " + this.state.currentList.toString());
     this.setState({currentScreen: AppScreen.HOME_SCREEN});
