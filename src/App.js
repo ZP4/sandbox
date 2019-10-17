@@ -58,6 +58,16 @@ class App extends Component {
     }
   };
 
+  getKey() {
+    let keys = this.state.todoLists.map(a => a.key);
+    for(let i = 0; i < this.state.todoLists.length; i++) {
+      if(!(keys.includes(i))) {
+        return i
+      }
+    }
+    return this.state.todoLists.length
+  }
+
   deleteList = (value) => {
     let count = -1;
     for(let i = 0;i<this.state.todoLists.length;i++) {
@@ -68,6 +78,21 @@ class App extends Component {
 
     this.state.todoLists.splice(count, 1);
     this.goHome()
+  };
+
+  newList = () => {
+    let l = this.getKey();
+    let list = {
+      "key": l,
+      "name": "Unknown",
+      "owner": "Unknown",
+      "items": []
+    };
+    this.state.todoLists.push(list);
+    this.setState({
+      currentList: list
+    });
+    this.loadList(list)
   };
 
   goHome = () => {
@@ -90,7 +115,9 @@ class App extends Component {
       case AppScreen.HOME_SCREEN:
         return <HomeScreen 
         loadList={this.loadList.bind(this)} 
-        todoLists={this.state.todoLists} />;
+        todoLists={this.state.todoLists}
+        newList={this.newList.bind(this)}
+        />;
       case AppScreen.LIST_SCREEN:            
         return <ListScreen
           goHome={this.goHome.bind(this)}
