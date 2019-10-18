@@ -30,8 +30,9 @@ export class ListItemCard extends Component {
 
     itemDelete(event) {
         event.stopPropagation();
-        this.props.jstpsTrigger();
+
         this.props.itemDeleteFunc(this.props.listItem)
+        this.props.jstpsTrigger();
     }
 
     editItem = (event) => {

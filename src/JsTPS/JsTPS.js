@@ -31,7 +31,7 @@ export class JsTPS {
   }
 
   hasTransactionToRedo() {
-    return this.mostRecentTransaction < this.transactionArray.length - 1;
+    return this.mostRecentTransaction < this.transactionArray.length-1;
   }
 
   clearAllTransactions() {
@@ -54,7 +54,7 @@ export class JsTPS {
     //let singleTransaction;
     if (this.hasTransactionToRedo()) {
       this.performingDo = true;
-      //singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
+      // var singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
       //singleTransaction.doTransaction();
       this.mostRecentTransaction++;
       this.performingDo = false;
@@ -82,7 +82,7 @@ export class JsTPS {
 
   peekUndo() {
     if (this.hasTransactionToUndo()) {
-      return this.transactionArray[this.mostRecentTransaction];
+      return this.transactionArray[this.mostRecentTransaction-1];
     } else {
       return null;
     }
@@ -90,7 +90,7 @@ export class JsTPS {
 
   peekDo() {
     if (this.hasTransactionToRedo()) {
-      return this.transactionArray[this.mostRecentTransaction + 1];
+      return this.transactionArray[this.mostRecentTransaction+1];
     } else {
       return null;
     }

@@ -68,9 +68,11 @@ class App extends Component {
     let newList;
     if(tps.hasTransactionToRedo()) {
       console.log("redo ran=====================")
-      tps.doTransaction();
       newList= tps.peekDo();
+      tps.doTransaction();
+
       let count;
+      console.log(newList);
       for(let i =0;i<this.state.todoLists.length;i++) {
         let list = this.state.todoLists[i];
         if(list.key === newList.key) {
@@ -196,12 +198,12 @@ class App extends Component {
     console.log("currentList: " + this.state.currentList);
     this.setState({currentScreen: AppScreen.LIST_SCREEN});
     this.setState({currentList: todoListToLoad});
-    // let tps = this.state.transactionArray;
-    // tps.addTransaction(JSON.parse(JSON.stringify(todoListToLoad)));
-    // console.log(tps.toString());
-    // this.setState({
-    //   transactionArray: tps
-    // });
+    let tps = this.state.transactionArray;
+    tps.addTransaction(JSON.parse(JSON.stringify(todoListToLoad)));
+    console.log(tps.toString());
+    this.setState({
+      transactionArray: tps
+    });
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   };
