@@ -27,7 +27,7 @@ export class JsTPS {
   }
 
   hasTransactionToUndo() {
-    return this.mostRecentTransaction >= 0;
+    return this.mostRecentTransaction > 0;
   }
 
   hasTransactionToRedo() {

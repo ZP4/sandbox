@@ -200,7 +200,6 @@ class App extends Component {
     this.setState({currentList: todoListToLoad});
     let tps = this.state.transactionArray;
     tps.addTransaction(JSON.parse(JSON.stringify(todoListToLoad)));
-    console.log(tps.toString());
     this.setState({
       transactionArray: tps
     });

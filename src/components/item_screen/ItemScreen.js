@@ -20,12 +20,13 @@ export class ItemScreen extends Component {
     };
 
     submitItem = (value) => {
-        this.props.jstpsTrigger();
+
         this.state.item.description = this.state.desc;
         this.state.item.assigned_to = this.state.assigned;
         this.state.item.due_date = this.state.date;
         this.state.item.completed = this.state.checked;
         this.props.itemEditCheck(this.state.item, true)
+        this.props.jstpsTrigger();
     };
 
 

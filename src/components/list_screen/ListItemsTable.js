@@ -37,6 +37,7 @@ export class ListItemsTable extends Component {
     }
 
     sortItem(category)  {
+
         let array = this.state.list;
         if (category === sortCategory.TASK) {
             //this.compare(a.description, b.description, this.state.currentTaskSortingCriteria)
@@ -65,6 +66,7 @@ export class ListItemsTable extends Component {
                 : this.setState({currentStatusSortingCriteria: sortingCriteria.SORT_STATUS_INCREASING})
         }
         this.setState({list: array});
+        this.props.jstpsTrigger();
     }
 
     compare(item1, item2, criteria) {
