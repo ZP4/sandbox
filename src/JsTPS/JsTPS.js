@@ -44,7 +44,7 @@ export class JsTPS {
     if (this.hasTransactionToUndo()) {
       this.performingUndo = true;
       singleTransaction = this.transactionArray[this.mostRecentTransaction];
-      singleTransaction.undoTransaction();
+      //singleTransaction.undoTransaction();
       this.mostRecentTransaction--;
       this.performingUndo = false;
     }
@@ -55,7 +55,7 @@ export class JsTPS {
     if (this.hasTransactionToRedo()) {
       this.performingDo = true;
       singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
-      singleTransaction.doTransaction();
+      //singleTransaction.doTransaction();
       this.mostRecentTransaction++;
       this.performingDo = false;
     }

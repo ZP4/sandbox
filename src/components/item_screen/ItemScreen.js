@@ -43,7 +43,7 @@ export class ItemScreen extends Component {
                 <input id="edit_due_date_datefield" ref="date" type="date" value={this.state.date} onChange={(e) => {this.setState({date: e.target.value})}}/>
                 <br/><br/>
                 <strong>Completed:</strong>
-                <input id="edit_completed_checkbox" ref="check"  type="checkbox" checked={this.state.checked} onClick={(e) => {this.setState({checked: e.target.checked})}}/>
+                <input id="edit_completed_checkbox" ref="check"  type="checkbox" defaultChecked={this.state.checked} onClick={(e) => {this.setState({checked: e.target.checked})}}/>
                 <br/><br/>
                 <div>
                     <button id="edit_submit_button"

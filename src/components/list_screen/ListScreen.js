@@ -54,6 +54,10 @@ export class ListScreen extends Component {
         this.props.deleteList(key)
     }
 
+    jstpsTrigger() {
+        console.log("name or owner list changed");
+    }
+
 
     render() {
         return (
@@ -72,6 +76,7 @@ export class ListScreen extends Component {
                             type="text" 
                             id="list_name_textfield"
                             onChange={this.setListName.bind(this)}
+                            onBlur={this.jstpsTrigger.bind(this)}
                         />
                     </div>
                     <div id="list_details_owner_container" className="text_toolbar">
@@ -81,6 +86,7 @@ export class ListScreen extends Component {
                             type="text" 
                             id="list_owner_textfield"
                             onChange={this.setListOwner.bind(this)}
+                            onBlur={this.jstpsTrigger.bind(this)}
                         />
                     </div>
                 </div>

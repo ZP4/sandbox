@@ -123,7 +123,13 @@ class App extends Component {
     console.log("currentList: " + this.state.currentList);
     this.setState({currentScreen: AppScreen.LIST_SCREEN});
     this.setState({currentList: todoListToLoad});
-
+    console.log(todoListToLoad);
+    let tps = this.state.transactionArray;
+    tps.addTransaction(todoListToLoad);
+    console.log(tps.toString());
+    this.setState({
+      transactionArray: tps
+    })
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   };
