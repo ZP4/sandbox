@@ -4,11 +4,11 @@ export class ListItemCard extends Component {
 
     constructor(props) {
         super(props);
-
     }
 
     moveItemUp(event) {
         event.stopPropagation();
+        this.props.jstpsTrigger();
         if(this.props.index === 0) {
             return false
         }
@@ -19,6 +19,7 @@ export class ListItemCard extends Component {
 
     moveItemDown(event) {
         event.stopPropagation();
+        this.props.jstpsTrigger();
         if(this.props.index === this.props.todoList.length-1) {
             return false
         }
@@ -29,6 +30,7 @@ export class ListItemCard extends Component {
 
     itemDelete(event) {
         event.stopPropagation();
+        this.props.jstpsTrigger();
         this.props.itemDeleteFunc(this.props.listItem)
     }
 

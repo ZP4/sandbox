@@ -8,13 +8,13 @@ class ListNewItemCard extends Component {
     }
 
     getKey() {
-        let keys = this.props.list.map(a => a.key);
-        for(let i = 0; i < this.props.list.length; i++) {
+        let keys = this.props.todoList.items.map(a => a.key);
+        for(let i = 0; i < this.props.todoList.items.length; i++) {
             if(!(keys.includes(i))) {
                 return i
             }
         }
-        return this.props.list.length
+        return this.props.todoList.items.length
     }
 
     newItem = (event) => {

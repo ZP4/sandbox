@@ -3,7 +3,7 @@ export class JsTPS {
     this.transactionArray = [];
     this.mostRecentTransaction = -1;
     this.performingDo = false;
-    this.perfomingUndo = false;
+    this.performingUndo = false;
   }
 
   isPerfomingDo() {
@@ -40,10 +40,10 @@ export class JsTPS {
   }
 
   undoTransaction() {
-    let singleTransaction;
+    //let singleTransaction;
     if (this.hasTransactionToUndo()) {
       this.performingUndo = true;
-      singleTransaction = this.transactionArray[this.mostRecentTransaction];
+      //singleTransaction = this.transactionArray[this.mostRecentTransaction];
       //singleTransaction.undoTransaction();
       this.mostRecentTransaction--;
       this.performingUndo = false;
@@ -51,10 +51,10 @@ export class JsTPS {
   }
 
   doTransaction() {
-    let singleTransaction;
+    //let singleTransaction;
     if (this.hasTransactionToRedo()) {
       this.performingDo = true;
-      singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
+      //singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
       //singleTransaction.doTransaction();
       this.mostRecentTransaction++;
       this.performingDo = false;

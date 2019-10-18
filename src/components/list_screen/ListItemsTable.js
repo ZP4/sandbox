@@ -30,6 +30,12 @@ export class ListItemsTable extends Component {
         this.compare = this.compare.bind(this);
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState({
+            list: nextProps.todoList.items
+        })
+    }
+
     sortItem(category)  {
         let array = this.state.list;
         if (category === sortCategory.TASK) {
@@ -158,13 +164,15 @@ export class ListItemsTable extends Component {
                             itemUpFunc={this.itemUp.bind(this)}
                             itemDownFunc={this.itemDown.bind(this)}
                             itemDeleteFunc={this.itemDelete.bind(this)}
-
+                            jstpsTrigger={this.props.jstpsTrigger}
+                            jstpUndo={this.props.jstpUndo}
+                            jstpRedo={this.props.jstpRedo}
                         />
                     ))
                 }
 
                     <ListNewItemCard
-                        list={this.state.list}
+                        todoList={this.props.todoList}
                         goEditItem={this.props.goEditItem}
                     />
 

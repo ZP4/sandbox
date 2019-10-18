@@ -26,6 +26,73 @@ class App extends Component {
     transactionArray: new JsTPS()
   };
 
+  jsTPSTrigger() {
+    let tps = this.state.transactionArray;
+    tps.addTransaction(JSON.parse(JSON.stringify(this.state.currentList)));
+    this.setState({
+      transactionArray: tps
+    })
+  }
+
+  jsTPSUndo() {
+    let tps = this.state.transactionArray;
+    let oldList;
+    if(tps.hasTransactionToUndo()) {
+      oldList = tps.peekUndo();
+      tps.undoTransaction();
+      let count;
+      for(let i =0;i<this.state.todoLists.length;i++) {
+        let list = this.state.todoLists[i];
+        if(list.key === oldList.key) {
+          count = i;
+        }
+      }
+      let list = this.state.todoLists;
+      list.splice(count, 1, oldList);
+
+      this.setState({
+        transactionArray: tps,
+        currentList: oldList,
+        todoLists: list
+      });
+      this.forceUpdate();
+    }
+    else {
+      console.log("Cannot Undo");
+    }
+
+  }
+
+  jsTPSRedo() {
+    let tps = this.state.transactionArray;
+    let newList;
+    if(tps.hasTransactionToRedo()) {
+      console.log("redo ran=====================")
+      tps.doTransaction();
+      newList= tps.peekDo();
+      let count;
+      for(let i =0;i<this.state.todoLists.length;i++) {
+        let list = this.state.todoLists[i];
+        if(list.key === newList.key) {
+          count = i;
+        }
+      }
+      let list = this.state.todoLists;
+      list.splice(count, 1, newList);
+      this.setState({
+        transactionArray: tps,
+        currentList: newList,
+        todoLists: list
+      });
+      this.forceUpdate();
+    }
+    else {
+      console.log("Cannot Redo");
+    }
+
+
+  }
+
   setCurrentListName = (value) => {
     //this.state.currentList.name = value;
     let list = this.state.currentList;
@@ -105,9 +172,10 @@ class App extends Component {
       "owner": "Unknown",
       "items": []
     };
-    this.state.todoLists.push(list);
+    let newTodoLists = this.state.todoLists;
+    newTodoLists.push(list);
     this.setState({
-      currentList: list
+      todoLists: newTodoLists
     });
     this.loadList(list)
   };
@@ -116,6 +184,11 @@ class App extends Component {
     console.log("currentList: " + this.state.currentList.toString());
     this.setState({currentScreen: AppScreen.HOME_SCREEN});
     this.setState({currentList: null});
+    let tps = this.state.transactionArray;
+    tps.clearAllTransactions();
+    this.setState({
+      transactionArray: tps
+    });
     console.log("currentList: " + this.state.currentList);
   };
 
@@ -123,13 +196,12 @@ class App extends Component {
     console.log("currentList: " + this.state.currentList);
     this.setState({currentScreen: AppScreen.LIST_SCREEN});
     this.setState({currentList: todoListToLoad});
-    console.log(todoListToLoad);
-    let tps = this.state.transactionArray;
-    tps.addTransaction(todoListToLoad);
-    console.log(tps.toString());
-    this.setState({
-      transactionArray: tps
-    })
+    // let tps = this.state.transactionArray;
+    // tps.addTransaction(JSON.parse(JSON.stringify(todoListToLoad)));
+    // console.log(tps.toString());
+    // this.setState({
+    //   transactionArray: tps
+    // });
     console.log("currentList: " + this.state.currentList);
     console.log("currentScreen: " + this.state.currentScreen);
   };
@@ -151,6 +223,9 @@ class App extends Component {
           goEditItem={this.loadItemEdit.bind(this)}
           itemEditCheck={this.itemEditCheck.bind(this)}
           deleteList={this.deleteList.bind(this)}
+          jstpsTrigger={this.jsTPSTrigger.bind(this)}
+          jstpUndo={this.jsTPSUndo.bind(this)}
+          jstpRedo={this.jsTPSRedo.bind(this)}
         />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
@@ -159,6 +234,9 @@ class App extends Component {
                   todoItem={this.state.currentItem}
                   currentScreen={this.state.currentScreen}
                   itemEditCheck={this.itemEditCheck.bind(this)}
+                  jstpsTrigger={this.jsTPSTrigger.bind(this)}
+                  jstpUndo={this.jsTPSUndo.bind(this)}
+                  jstpRedo={this.jsTPSRedo.bind(this)}
         />;
       default:
         return <div>ERROR</div>;

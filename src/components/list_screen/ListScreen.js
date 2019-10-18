@@ -10,7 +10,45 @@ export class ListScreen extends Component {
         this.state = {
             listName: this.props.todoList.name,
             listOwner: this.props.todoList.owner
+        };
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+
+    handleKeyDown(event) {
+        //WINDOWS
+        let charCode = String.fromCharCode(event.which).toLowerCase();
+        if(event.ctrlKey) {
+            if(charCode === 'z') {
+                console.log("Z");
+                this.props.jstpUndo();
+            }
+            if(charCode === 'y') {
+                console.log("Y");
+                this.props.jstpRedo();
+            }
         }
+
+        //MAC
+        if(event.metaKey && charCode === 'z') {
+            this.props.jstpUndo();
+        }
+        if(event.metaKey && charCode === 'y') {
+            this.props.jstpRedo();
+        }
+    }
+
+    removeListener() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    }
+    addListener() {
+        document.addEventListener('keydown',this.handleKeyDown);
+    }
+    componentDidMount(){
+        document.addEventListener('keydown',this.handleKeyDown);
+    }
+    componentWillUnmount(){
+        document.removeEventListener('keydown',this.handleKeyDown);
     }
     getListName() {
         if (this.props.todoList) {
@@ -51,22 +89,24 @@ export class ListScreen extends Component {
 
     modalYes() {
         let key = this.props.todoList.key;
-        this.props.deleteList(key)
+        this.props.deleteList(key);
     }
-
-    jstpsTrigger() {
-        console.log("name or owner list changed");
-    }
-
+    //
+    // jstpsTrigger() {
+    //     this.props.jstpsTrigger();
+    // }
+    //
+    // jstpsUndoListScreen() {
+    //     this.props.jstpUndo();
+    // }
 
     render() {
         return (
-            <div id="todo_list">
+            <div id="todo_list" >
                 <div>
                     <ListHeading goHome={this.props.goHome} />
                     <ListTrash show={this.trashModal.bind(this)}/>
                 </div>
-
 
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
@@ -76,7 +116,8 @@ export class ListScreen extends Component {
                             type="text" 
                             id="list_name_textfield"
                             onChange={this.setListName.bind(this)}
-                            onBlur={this.jstpsTrigger.bind(this)}
+                            onFocus={this.removeListener.bind(this)}
+                            onBlur={this.addListener.bind(this)}
                         />
                     </div>
                     <div id="list_details_owner_container" className="text_toolbar">
@@ -86,7 +127,8 @@ export class ListScreen extends Component {
                             type="text" 
                             id="list_owner_textfield"
                             onChange={this.setListOwner.bind(this)}
-                            onBlur={this.jstpsTrigger.bind(this)}
+                            onFocus={this.removeListener.bind(this)}
+                            onBlur={this.addListener.bind(this)}
                         />
                     </div>
                 </div>
@@ -94,6 +136,9 @@ export class ListScreen extends Component {
                     todoList={this.props.todoList}
                     goEditItem={this.props.goEditItem}
                     itemEditCheck={this.props.itemEditCheck}
+                    jstpsTrigger={this.props.jstpsTrigger}
+                    jstpUndo={this.props.jstpUndo}
+                    jstpRedo={this.props.jstpRedo}
                 />
                 <div id="dialog" className="wrap">
                     <div  className="modal modal_dialog">
