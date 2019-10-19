@@ -192,6 +192,7 @@ body {
 .list_item_add_card {
   font-weight: bold;
   font-size: 48px;
+    padding-bottom: 20px;
 }
 .list_item_add_card:hover {
   color: var(--swatch-bright-accent);

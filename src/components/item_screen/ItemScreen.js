@@ -4,7 +4,7 @@ import ListScreen from "../list_screen/ListScreen";
 
 export class ItemScreen extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = ({
             item: this.props.todoItem,
             desc: this.props.todoItem.description,
@@ -20,11 +20,14 @@ export class ItemScreen extends Component {
     };
 
     submitItem = (value) => {
-
-        this.state.item.description = this.state.desc;
-        this.state.item.assigned_to = this.state.assigned;
-        this.state.item.due_date = this.state.date;
-        this.state.item.completed = this.state.checked;
+        let itemEdit = this.state.item;
+        itemEdit.description = this.state.desc;
+        itemEdit.assigned_to = this.state.assigned;
+        itemEdit.due_date = this.state.date;
+        itemEdit.completed = this.state.checked;
+        this.setState({
+            item: itemEdit
+        });
         this.props.itemEditCheck(this.state.item, true)
         this.props.jstpsTrigger();
     };

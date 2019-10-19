@@ -40,22 +40,16 @@ export class JsTPS {
   }
 
   undoTransaction() {
-    //let singleTransaction;
     if (this.hasTransactionToUndo()) {
       this.performingUndo = true;
-      //singleTransaction = this.transactionArray[this.mostRecentTransaction];
-      //singleTransaction.undoTransaction();
       this.mostRecentTransaction--;
       this.performingUndo = false;
     }
   }
 
   doTransaction() {
-    //let singleTransaction;
     if (this.hasTransactionToRedo()) {
       this.performingDo = true;
-      // var singleTransaction = this.transactionArray[this.mostRecentTransaction + 1];
-      //singleTransaction.doTransaction();
       this.mostRecentTransaction++;
       this.performingDo = false;
     }

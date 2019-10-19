@@ -5,10 +5,6 @@ import HomeScreen from './components/home_screen/HomeScreen'
 import ItemScreen from './components/item_screen/ItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
 
-
-//import JsTPS from "./JsTPS/JsTPS";
-//import {Num, AddToNum_Transaction, AndMask_Transaction, OrMask_Transaction} from "./JsTPS/Demo";
-
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
   LIST_SCREEN: "LIST_SCREEN",
@@ -58,7 +54,7 @@ class App extends Component {
       this.forceUpdate();
     }
     else {
-      console.log("Cannot Undo");
+      console.log("Undo Failed");
     }
 
   }
@@ -67,12 +63,9 @@ class App extends Component {
     let tps = this.state.transactionArray;
     let newList;
     if(tps.hasTransactionToRedo()) {
-      console.log("redo ran=====================")
       newList= tps.peekDo();
       tps.doTransaction();
-
       let count;
-      console.log(newList);
       for(let i =0;i<this.state.todoLists.length;i++) {
         let list = this.state.todoLists[i];
         if(list.key === newList.key) {
@@ -89,7 +82,7 @@ class App extends Component {
       this.forceUpdate();
     }
     else {
-      console.log("Cannot Redo");
+      console.log("Redo Failed");
     }
 
 

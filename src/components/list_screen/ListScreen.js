@@ -50,20 +50,6 @@ export class ListScreen extends Component {
     componentWillUnmount(){
         document.removeEventListener('keydown',this.handleKeyDown);
     }
-    getListName() {
-        if (this.props.todoList) {
-            let name = this.props.todoList.name;
-            return this.props.todoList.name;
-        }
-        else
-            return "";
-    }
-    getListOwner() {
-        if (this.props.todoList) {
-            let owner = this.props.todoList.owner;
-            return this.props.todoList.owner;
-        }
-    }
 
     setListName(event) {
         this.setState({
@@ -91,15 +77,6 @@ export class ListScreen extends Component {
         let key = this.props.todoList.key;
         this.props.deleteList(key);
     }
-    //
-    // jstpsTrigger() {
-    //     this.props.jstpsTrigger();
-    // }
-    //
-    // jstpsUndoListScreen() {
-    //     this.props.jstpUndo();
-    // }
-
     render() {
         return (
             <div id="todo_list" >

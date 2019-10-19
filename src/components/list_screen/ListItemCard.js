@@ -8,30 +8,32 @@ export class ListItemCard extends Component {
 
     moveItemUp(event) {
         event.stopPropagation();
-        this.props.jstpsTrigger();
+
         if(this.props.index === 0) {
             return false
         }
         else {
             this.props.itemUpFunc(this.props.listItem)
         }
+        this.props.jstpsTrigger();
     }
 
     moveItemDown(event) {
         event.stopPropagation();
-        this.props.jstpsTrigger();
+
         if(this.props.index === this.props.todoList.length-1) {
             return false
         }
         else {
             this.props.itemDownFunc(this.props.listItem)
         }
+        this.props.jstpsTrigger();
     }
 
     itemDelete(event) {
         event.stopPropagation();
 
-        this.props.itemDeleteFunc(this.props.listItem)
+        this.props.itemDeleteFunc(this.props.listItem);
         this.props.jstpsTrigger();
     }
 
